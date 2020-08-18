@@ -14,6 +14,7 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.not;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
 @SmallTest
@@ -24,8 +25,15 @@ public class MainActivityTest {
 
     @Test
     public void changeText_sameActivity() {
-        onView(withId(R.id.joke_button)).perform(click());
-        onView(withId(R.id.joke_text_view)).check(matches(not(withText(""))));
+        String response = null;
+        EndpointsAsyncTask endpointsAsyncTask = new EndpointsAsyncTask();
+        endpointsAsyncTask.execute(activityRule.getActivity());
+        try {
+            response = endpointsAsyncTask.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        assertNotNull(response);
     }
 
 }

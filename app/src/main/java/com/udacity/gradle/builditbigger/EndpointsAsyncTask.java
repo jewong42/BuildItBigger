@@ -35,7 +35,7 @@ public class EndpointsAsyncTask extends AsyncTask<EndpointsAsyncTaskCallback, Vo
         try {
             return myApiService.getJoke().execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            return null;
         }
     }
 

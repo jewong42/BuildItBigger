@@ -7,9 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 
 /**
  * A placeholder fragment containing a simple view.
@@ -29,20 +26,6 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        initViews(view);
-    }
-
-    private void initViews(View view) {
-        AdView mAdView = view.findViewById(R.id.adView);
-        if (getResources().getBoolean(R.bool.showAds)) {
-            mAdView.setVisibility(View.VISIBLE);
-            AdRequest adRequest = new AdRequest.Builder()
-                    .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .build();
-            mAdView.loadAd(adRequest);
-        } else {
-            mAdView.setVisibility(View.GONE);
-        }
     }
 
 }
